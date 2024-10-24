@@ -1,4 +1,4 @@
-@import 'src/styles/variables';
+@use './variables' as *;
 
 @mixin dashboard-section($variant: 'big') {
 	margin-top: $gap;

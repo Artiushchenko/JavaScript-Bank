@@ -1,4 +1,4 @@
-import ChildComponent from '../component/child.components'
+import ChildComponent from '../component/child.component'
 
 class RenderService {
 	/**
