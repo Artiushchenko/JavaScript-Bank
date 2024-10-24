@@ -1,4 +1,5 @@
 import { BaseScreen } from '@/core/component/base-screen.component'
+import { $K } from '@/core/kQuery/kQuery.lib'
 import renderService from '@/core/services/render.service'
 
 import * as styles from './home.module.scss'
@@ -11,6 +12,8 @@ export class Home extends BaseScreen {
 
 	render() {
 		const element = renderService.htmlToElement(template, [], styles)
+
+		$K(element).find('h1').css('color', 'green')
 
 		return element.outerHTML
 	}
