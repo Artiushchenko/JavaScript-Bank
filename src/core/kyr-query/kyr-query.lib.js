@@ -1,6 +1,10 @@
 import { SERVER_URL } from '@/config/url.config'
 
+import { NotificationService } from '../services/notification.service'
+import { StorageService } from '../services/storage.service'
+
 import { extractErrorMessage } from './extract-error-message'
+import { ACCESS_TOKEN_KEY } from '@/constants/auth.constants'
 
 /**
  * KyrQuery is a minimalistic library for handling API requests.
@@ -28,7 +32,7 @@ export async function kyrQuery({
 		data = null
 	const URL = `${SERVER_URL}/api${path}`
 
-	const accessToken = ''
+	const accessToken = new StorageService().getItem(ACCESS_TOKEN_KEY)
 
 	const requestOptions = {
 		method,
@@ -61,6 +65,8 @@ export async function kyrQuery({
 				if (errorMessage) {
 					onError(errorMessage)
 				}
+
+				new NotificationService().show('error', errorMessage)
 			}
 		}
 	} catch (errorData) {
