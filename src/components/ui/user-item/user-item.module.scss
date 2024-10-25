@@ -1,5 +1,6 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
+@use 'sass:color';
 
 .user-item {
 	@include flex-horizontal-center;
@@ -17,7 +18,7 @@
 		@include transition(background-color);
 
 		&:hover {
-			background-color: adjust($gray, 7%);
+			background-color: color.adjust($gray, $lightness: 7%);
 		}
 	}
 
