@@ -1,10 +1,12 @@
 import { kyrQuery } from '@/core/kyr-query/kyr-query.lib'
 import { NotificationService } from '@/core/services/notification.service'
+import { Store } from '@/core/store/store'
 
 export class ClassService {
 	#BASE_URL = '/cards'
 
 	constructor() {
+		this.store = Store.getInstance()
 		this.notificationService = new NotificationService()
 	}
 
@@ -53,9 +55,9 @@ export class ClassService {
 			path: `${this.#BASE_URL}/transfer-money`,
 			method: 'PATCH',
 			body: {
-				amount: +amount
-				// fromCardNumber: this.store.user.card.number,
-				// toCardNumber
+				amount: +amount,
+				fromCardNumber: this.store.user.card.number,
+				toCardNumber
 			},
 			onSuccess: () => {
 				this.notificationService.show(

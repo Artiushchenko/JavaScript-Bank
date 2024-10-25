@@ -1,5 +1,7 @@
 import ChildComponent from '@/core/component/child.component'
+import { $K } from '@/core/kquery/kquery.lib'
 import renderService from '@/core/services/render.service'
+import { Store } from '@/core/store/store'
 
 import { UserItem } from '@/components/ui/user-item/user-item.component'
 
@@ -14,7 +16,23 @@ export class Header extends ChildComponent {
 	constructor({ router }) {
 		super()
 
+		this.store = Store.getInstance()
+		this.store.addObserver(this)
+
 		this.router = router
+	}
+
+	update() {
+		this.user = this.store.state.user
+
+		const authSideElement = $K(this.element).find('#auth-side')
+
+		if (this.user) {
+			authSideElement.show()
+			this.router.navigate('/')
+		} else {
+			authSideElement.hide()
+		}
 	}
 
 	render() {
@@ -34,6 +52,8 @@ export class Header extends ChildComponent {
 			],
 			styles
 		)
+
+		this.update()
 
 		return this.element
 	}
