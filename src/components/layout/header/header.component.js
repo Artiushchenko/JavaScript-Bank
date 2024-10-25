@@ -20,6 +20,11 @@ export class Header extends ChildComponent {
 		this.store.addObserver(this)
 
 		this.router = router
+
+		this.userItem = new UserItem({
+			avatarPath: '/',
+			name: 'JavaScript'
+		})
 	}
 
 	update() {
@@ -29,6 +34,7 @@ export class Header extends ChildComponent {
 
 		if (this.user) {
 			authSideElement.show()
+			this.userItem.update(this.user)
 			this.router.navigate('/')
 		} else {
 			authSideElement.hide()
@@ -44,11 +50,7 @@ export class Header extends ChildComponent {
 					router: this.router
 				}),
 				Search,
-				new UserItem({
-					avatarPath:
-						'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png',
-					name: 'JavaScript'
-				})
+				this.userItem
 			],
 			styles
 		)

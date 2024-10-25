@@ -13,4 +13,8 @@
 	&:focus-within {
 		border-color: rgba($primary, 0.5);
 	}
+
+	> input {
+		width: 100%;
+	}
 }
