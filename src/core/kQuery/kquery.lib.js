@@ -41,6 +41,21 @@ class KQuery {
 	}
 
 	/**
+	 * Gets or sets the value of an input element.
+	 * @param {string} [newValue] - The new value to set for the input element. If not provided, the method returns the current value.
+	 * @return {string|KQuery} - If newValue is provided, returns the KQuery instance. Otherwise, returns the current value of the input element.
+	 */
+	value(newValue) {
+		if (typeof newValue === 'undefined') {
+			return this.element.value
+		} else {
+			this.element.value = newValue
+
+			return this
+		}
+	}
+
+	/**
 	 * Set an event listener for the submit event of a form element.
 	 * @param {function(Event): void} onSubmit - The event listener for the form's submit event.
 	 * @returns The current KQuery instance for chaining.
@@ -325,6 +340,22 @@ class KQuery {
 
 			return this
 		}
+	}
+
+	/**
+	 * Removes an attribute from the current element.
+	 * @param {string} attributeName - The name of the attribute to remove.
+	 *
+	 * @return {KQuery} - Returns the KQuery instance.
+	 */
+	removeAttr(attributeName) {
+		if (typeof attributeName !== 'string') {
+			throw new Error('Attribute name must be a string!')
+		}
+
+		this.element.removeAttribute(attributeName)
+
+		return this
 	}
 }
 
