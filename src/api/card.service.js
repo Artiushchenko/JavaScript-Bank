@@ -2,7 +2,7 @@ import { kyrQuery } from '@/core/kyr-query/kyr-query.lib'
 import { NotificationService } from '@/core/services/notification.service'
 import { Store } from '@/core/store/store'
 
-export class ClassService {
+export class CardService {
 	#BASE_URL = '/cards'
 
 	constructor() {

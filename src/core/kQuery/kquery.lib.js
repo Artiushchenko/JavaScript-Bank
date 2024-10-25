@@ -162,6 +162,17 @@ class KQuery {
 	}
 
 	/**
+	 * Find all elements that match the specified selector within the selected element.
+	 * @param {string} selector - A CSS selector string to search for within the selected element.
+	 * @returns {KQuery[]} An array of new KQuery instances for the found elements.
+	 */
+	findAll(selector) {
+		const elements = this.element.querySelectorAll(selector)
+
+		return Array.from(elements).map(element => new KQuery(element))
+	}
+
+	/**
 	 * Append a new element as a child of the selected element.
 	 * @param {HTMLElement} childElement - The new child element to append.
 	 *
