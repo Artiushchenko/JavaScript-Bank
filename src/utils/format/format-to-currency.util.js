@@ -5,8 +5,8 @@
  * @returns {string} The formatted number with the currency symbol.
  */
 export function formatToCurrency(number) {
-	return new Intl.NumberFormat('uk-UA', {
-		currency: 'UAH',
+	return new Intl.NumberFormat('en-US', {
+		currency: 'USD',
 		style: 'currency'
 	}).format(number)
 }
